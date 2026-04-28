@@ -1,0 +1,177 @@
+How can I create a AI coworker to constantly scan the cities in the midwest with most growth which includes:
+Private and government investments (past, current and future)
+Jobs growth
+more hospitals and all the points that a multifamily investor should consider before paying?
+
+Apr 27
+Claude responded: Here's what I'll build: a live AI Market Intelligence Dashboard — a web app that uses the Anthropic API to scan and analyze Midwest cities for multifamily inve…
+
+Reading frontend design skill
+Reading frontend design skill
+Here's what I'll build: a live AI Market Intelligence Dashboard — a web app that uses the Anthropic API to scan and analyze Midwest cities for multifamily investment signals. It covers all the key factors: government/private investment, job growth, healthcare expansion, population trends, and more.
+
+
+
+Here's your AI Market Intelligence Scanner — fully functional and ready to use right now.
+
+How it works: Pick any Midwest city, toggle the signal categories you want to analyze (jobs, government investment, healthcare, population, infrastructure, risk), then hit "Analyze selected city." The AI returns a structured intelligence report in seconds.
+
+What it covers for each city:
+
+Investment score (0–100) with a buy signal rating
+6 key metrics: job growth, population growth, cap rate, vacancy, median rent, supply pipeline
+Categorized investment signals (green/amber/red dots)
+Strengths vs. risk breakdown
+Investor takeaway — written for a passive LP, not an operator
+After any analysis, three follow-up buttons let you drill into submarkets, compare cities head-to-head, or generate due diligence questions for a specific market — all feeding back into our conversation.
+
+To make this a true "always-on coworker," the next step would be connecting it to live data sources — I can build a version that pulls from:
+
+BLS API (jobs data, unemployment)
+Census Bureau API (population, household formation)
+HUD datasets (affordable housing investment, FMR rents)
+USASpending.gov (federal contract & grant flows by metro)
+Want me to add any of those live feeds, or expand the city list to include more Midwest metros?
+
+You said: Yes, please do
+Yes, please do
+
+Apr 27
+Claude responded: Let me build the full version with live data feeds connected.
+Let me build the full version with live data feeds connected.
+
+
+Check frontend design skill for reference
+Check frontend design skill for reference
+Now let me build the full version. This will be a proper multi-file application — an HTML dashboard + a Node.js backend proxy server that securely calls BLS, Census, HUD, USASpending, and Anthropic APIs.
+
+
+Ran 5 commands, created 4 files, read a file
+Ran 5 commands, created 4 files, read a file
+Your complete AI coworker is ready to download. Here's exactly what's inside and how to launch it in under 5 minutes:
+
+Inside the zip — 3 files:
+
+server.js — The backend brain. Runs on Node.js (no npm install needed — zero dependencies). It fans out 4 live API calls in parallel on every scan:
+
+BLS API → unemployment rate + year-over-year trend
+Census ACS 5-Year → total population, renter %, median household income
+HUD Fair Market Rents → 1BR/2BR/3BR rent benchmarks by metro
+USASpending.gov → top federal contracts & grants awarded to each county
+Then feeds all of it into Claude to generate the structured investment report.
+
+public/index.html — The full dashboard UI. Dark, professional, zero dependencies. Sidebar with all 16 cities, live data source indicators, animated scan progress, and a full report with signals, SWOT, top employers, hospital systems, target submarkets, and LP takeaway.
+
+To launch:
+
+bash
+unzip trcp-midwest-scanner.zip
+export ANTHROPIC_API_KEY=sk-ant-your-key-here
+node server.js
+# Open http://localhost:3000
+To deploy publicly (so your whole team can access it), the README covers Railway and Render — both have free tiers and take about 10 minutes. Your Anthropic key stays server-side and is never exposed to the browser.
+
+To add more cities, just add one entry to the CITIES object in server.js with the county FIPS code — the README has the exact format.
+
+You said: give me here a summary of the top 5 cities in the midwest with growth and investment potential
+give me here a summary of the top 5 cities in the midwest with growth and investment potential
+
+Apr 27
+Claude responded: Here's what the data is telling us heading into 2026, based on the Arbor-Chandan Multifamily Opportunity Matrix, CBRE, Kiser Group, Northmarq, and Berkadia res…
+
+Searched the web
+Searched the web
+
+
+Here's what the data is telling us heading into 2026, based on the Arbor-Chandan Multifamily Opportunity Matrix, CBRE, Kiser Group, Northmarq, and Berkadia research:
+
+The Midwest as a whole is outperforming the Sun Belt right now. Sun Belt markets are still working through a supply wave, and investors will likely have to wait until 2026 or later for those fundamentals to match the Midwest's. Meanwhile, the Midwest has a significantly smaller pipeline than national statistics — only 3.4% of inventory currently under construction versus 6.0% nationally — and multifamily rents are averaging $1,405, well below the national average of $1,823.
+
+The headline theme across all five cities: tight supply + sticky renter demand + below-national-average homeownership costs = durable rent growth with real cash flow. The monthly mortgage payment on a median-priced home is nearly $1,200 higher than the average apartment rent nationally — that spread keeps renters renting longer everywhere, but especially in these affordable Midwest markets where the entry price for investors still makes deals pencil.
+
+A few things worth noting for your syndication strategy specifically:
+
+Columbus is the consensus top pick right now. Indianapolis ranked second and Columbus third in the Fall 2025 Arbor-Chandan matrix, with both cities dominating the top 10 thanks to affordability, economic diversity, and rising rental demand. Cleveland is the sleeper play — it leads the entire Midwest with 5.1% year-over-year rent growth and posts the highest average cap rate in the Midwest at 6.8%, meaning cash flow actually works there right now.
+
+Want me to run the full AI scanner on any of these five cities to get the live BLS, Census, and federal investment data?
+
+You said: columbus please
+columbus please
+
+Apr 27
+
+Searched the web
+Searched the web
+
+Claude's response was interrupted
+You said: I want 2026 data
+I want 2026 data
+
+Apr 27
+Claude responded: Let me search for the most current 2026 Columbus data.
+Let me search for the most current 2026 Columbus data.
+
+
+Searched the web
+Searched the web
+Good — now I have fresh Q4 2025 actuals and 2026 forecasts. Let me build the full report.
+
+
+
+Here's the honest 2026 picture on Columbus — and it's more nuanced than the headlines suggest.
+
+The short version: the market is in a temporary supply hangover, not a structural decline. Vacancy hit 9.8% — a 20-year high — as the market delivered 9,093 units in 2025, with annual rent growth decelerating to just 0.2%, the weakest in a decade. That's the bad news.
+
+The good news is the setup for what comes next. The construction pipeline has dipped to a four-year low, representing a 75% projected drop in supply for 2026, which is the light at the end of the tunnel — and cap rates have expanded to 6.7%, the best entry yields in years. Despite declining rent growth, Columbus' unemployment rate dropped to 3.6% and Ohio ranked as a top 10 state for year-over-year GDP growth at 5.1%.
+
+On the economic development side, Anduril's Arsenal-1 facility will create more than 4,000 jobs over the next decade with potential to add $2 billion per year to the state's economy — and production begins July 2026. The Intel delay to 2030 is a real risk to watch in New Albany specifically, but Anduril is already actively recruiting people who work or intended to work for Intel.
+
+The LP strategy is clear: this is a buying window, not a warning signal. Buy Class B workforce housing in Delaware County or the Rickenbacker corridor now, hold 5–7 years, and capture the rent growth inflection when this supply wave fully absorbs in 2027–2028.
+
+You said: any private and goverment investiment in the region?
+any private and goverment investiment in the region?
+
+Apr 27
+Claude responded: Now I have everything.
+
+Searched the web
+Searched the web
+Now I have everything. Let me build the full investment map.
+
+
+The Columbus investment picture is extraordinary — over $53 billion in identified capital across four categories. Here's what stands out most for a multifamily investor:
+
+The data center buildout is a renter demand machine. Columbus is on track to become the second-largest data center hub in the Great Lakes region, surpassing New York City, with Meta wrapping up construction in 2026 on the Prometheus facility — the world's first data center requiring over 1 gigawatt of power. These facilities create construction employment now and tech operations jobs permanently.
+
+Anduril is the single biggest near-term catalyst. Arsenal-1 will eventually be a 5 million square foot facility manufacturing advanced military technology, with Anduril pledging to create 4,008 jobs and generate a payroll of more than $530 million. That payroll translates directly into rent-paying households in the Rickenbacker/south Columbus corridor.
+
+Healthcare is a quiet anchor. Nationwide Children's Hospital is making its biggest capital investment in its history while the OSU Wexner Medical Center tower ($1.9B) is under construction — these are recession-proof employment anchors that keep renter demand floors stable regardless of tech cycles.
+
+The airport tells you everything about trajectory. Columbus hit a record 9.2 million travelers in 2024, and the new $2 billion terminal is on track to open on time and on budget — expanding capacity by 51%. Cities building $2B airports are cities expecting serious long-term population growth.
+
+The one flag worth watching: some Columbus-area townships have passed moratoriums on data center development amid growing community opposition, and American Electric Power paused new project approvals due to grid capacity concerns. That could slow the data center pipeline — but it also means the power grid constraint is a natural supply cap, which protects existing projects' value.
+
+You said: So would you invest in the region?
+So would you invest in the region?
+
+Apr 27
+Claude responded: This is genuinely one of the more compelling Midwest markets right now, but the honest answer is: it depends on exactly what you're buying, where, and when in …
+This is genuinely one of the more compelling Midwest markets right now, but the honest answer is: it depends on exactly what you're buying, where, and when in 2026.
+
+Here's my straight take:
+
+Yes, I'd invest — but with surgical precision, not a blanket bet.
+
+The fundamental case is as strong as any secondary market in the country right now. You have $53B+ in committed capital, the largest job creation project in Ohio history opening this year, 133 data centers with more coming, two major hospital expansions, a $2B airport rebuild, and a population adding 32,500 people annually. That economic infrastructure doesn't get built in markets that are declining — it gets built in markets that sophisticated capital has already decided are winning long-term.
+
+But the timing within the market matters enormously right now. Vacancy sits at 9.8% — a 20-year high — and operators are actively offering concessions to maintain occupancy, with the market still searching for its floor. If you buy a Class A downtown asset or anything in the New Albany submarket today and underwrite to 2024 rent assumptions, you'll get hurt in the near term.
+
+What I'd actually do:
+
+The play is Class B workforce housing in Delaware County or the Rickenbacker/south Columbus corridor — buy at today's elevated cap rates (6.7%, the highest in years), underwrite conservatively through H1 2026, and hold 5–7 years to capture the inflection. New construction starts are expected to decline 22% through 2026, and Columbus' unemployment dropped to 3.6% even as rents softened — meaning the demand is there, it's purely a supply timing issue.
+
+The passive LP angle is particularly strong here. This is exactly the market profile that fits the syndication model in your content calendar — a market where the 10-year economic story is undeniable, short-term surface-level headlines scare off unsophisticated capital, and the investors who move now on value-add deals will look very smart in 2028 when Anduril is fully ramped, the Intel campus opens, and the supply cliff has fully absorbed.
+
+The one thing I'd tell any LP to ask a Columbus syndicator before wiring money: "Show me your submarket and your vintage." Downtown Class A 2024 delivery is a very different bet than a 2005-built Class B garden-style complex in Delaware County. Same city, completely different risk profile right now.
+
+Want me to build out a sample underwriting framework for a Columbus value-add deal — what assumptions to stress-test and what questions to ask the GP?
