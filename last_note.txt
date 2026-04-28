@@ -1,0 +1,7 @@
+● Saved. Two files now anchor the next session:
+                                                                                                                                                 
+  - CLAUDE.md (project root, auto-loaded) — locked spec, architecture, status, environment notes, what to do next
+  - docs/superpowers/plans/2026-04-28-trc-research-tool.md — the 78 KB executable plan, reviewed and patched                                     
+                         
+  When you start the next session, open this directory and tell Claude either "execute the plan with subagent-driven-development" or             
+  "/executing-plans" (depending on which skill name resolves). The CLAUDE.md will load automatically and give it the full picture.
