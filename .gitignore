@@ -1,2 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+.uv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.streamlit/secrets.toml
 .env
+.env.*
+!.env.example
+*.log
 .claude/
+.DS_Store
+Thumbs.db
+supabase/.branches/
+supabase/.temp/
