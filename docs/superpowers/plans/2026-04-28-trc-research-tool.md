@@ -1,3 +1,8 @@
+> ⚠️ **SUPERSEDED — 2026-05-18.** This React/Node plan is no longer active. The
+> project moved to a Streamlit/Python architecture. Do not implement from this file.
+> - Active spec: `docs/superpowers/specs/2026-05-18-trc-streamlit-redesign-design.md`
+> - Active plan: `docs/superpowers/plans/2026-05-18-trc-streamlit-research-tool.md`
+> Kept for historical reference only.
 # Terra Real Capital Research Tool — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

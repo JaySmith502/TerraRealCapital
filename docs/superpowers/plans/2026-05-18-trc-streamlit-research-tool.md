@@ -114,6 +114,7 @@ __pycache__/
 .env.*
 !.env.example
 *.log
+.claude/
 .DS_Store
 Thumbs.db
 supabase/.branches/
