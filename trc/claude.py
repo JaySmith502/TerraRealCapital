@@ -2,6 +2,7 @@ from anthropic import Anthropic
 from trc.config import Settings
 from trc.models import ReportPayload
 from trc.prompts.system import SCAN_SYSTEM_PROMPT, EMIT_REPORT_TOOL
+from trc.prompts.regenerate import REGEN_INSTRUCTIONS
 
 
 def make_anthropic(settings: Settings) -> Anthropic:
@@ -28,3 +29,18 @@ def generate_report(client, *, model: str, research_text: str,
     )
     tool_use = next(b for b in msg.content if getattr(b, "type", None) == "tool_use")
     return ReportPayload.model_validate(tool_use.input)
+
+
+def regenerate_section(client, *, model: str, section_title: str,
+                        section_body: str, instruction: str) -> str:
+    extra = f"\n\nUser instruction: {instruction}" if instruction.strip() else ""
+    msg = client.messages.create(
+        model=model,
+        max_tokens=2000,
+        system=[{"type": "text", "text": REGEN_INSTRUCTIONS,
+                 "cache_control": {"type": "ephemeral"}}],
+        messages=[{"role": "user",
+                   "content": f"Section: {section_title}\n\n{section_body}{extra}"}],
+    )
+    return "".join(b.text for b in msg.content
+                   if getattr(b, "type", None) == "text").strip()

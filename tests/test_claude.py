@@ -40,3 +40,18 @@ def test_scan_system_prompt_is_real_and_cacheable():
     assert len(SCAN_SYSTEM_PROMPT) > 4000
     assert "[Extend" not in SCAN_SYSTEM_PROMPT
     assert "TODO" not in SCAN_SYSTEM_PROMPT
+
+
+def test_regenerate_section_returns_plain_body():
+    from trc.claude import regenerate_section
+    class M:
+        def create(self, **kw):
+            self.kw = kw
+            return FakeBlock(content=[FakeBlock(type="text", text="Punchier body.")],
+                             usage=FakeBlock(cache_read_input_tokens=0))
+    class C: messages = M()
+    c = C()
+    out = regenerate_section(c, model="claude-sonnet-4-6",
+                             section_title="Beta", section_body="Old body",
+                             instruction="make it punchier")
+    assert out == "Punchier body."
