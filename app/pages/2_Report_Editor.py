@@ -71,6 +71,7 @@ if st.button("Save", type="primary"):
         "edited_at": dt.datetime.now(dt.timezone.utc).isoformat(),
     })
     st.success("Saved.")
+    st.rerun()
 
 st.divider()
 st.subheader("Copy for Beehiiv")

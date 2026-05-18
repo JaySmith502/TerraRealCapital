@@ -1,4 +1,5 @@
 import datetime as dt
+import logging
 import streamlit as st
 from ui.auth import require_auth
 from ui.resources import database, anthropic_client, settings
@@ -51,6 +52,5 @@ if st.button("Scan", type="primary"):
         # st.status auto-marks error when the with-block raises; reinforce with a banner.
         # Spec §5: human-readable banner in the UI; full traceback server-side ONLY
         # (never st.exception()). Streamlit Community Cloud captures stdout/stderr.
-        import logging
         logging.exception("scan failed")
         st.error(f"Scan failed ({type(e).__name__}): {e}")
