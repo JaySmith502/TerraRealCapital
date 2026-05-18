@@ -112,6 +112,7 @@ __pycache__/
 .streamlit/secrets.toml
 .env
 .env.*
+!.env.example
 *.log
 .DS_Store
 Thumbs.db
