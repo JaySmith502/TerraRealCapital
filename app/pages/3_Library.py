@@ -1,3 +1,8 @@
+import sys as _sys, pathlib as _pathlib
+for _p in (_pathlib.Path(__file__).resolve(), *_pathlib.Path(__file__).resolve().parents):
+    if (_p / "trc").is_dir() and (_p / "ui").is_dir():
+        _sys.path.insert(0, str(_p))
+        break
 import streamlit as st
 from ui.auth import require_auth
 from ui.resources import database
