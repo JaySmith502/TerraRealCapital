@@ -1,0 +1,5 @@
+# Minimal Supabase project marker for repo record.
+# The app does NOT use the Supabase CLI at runtime (it connects via the
+# service-role key over PostgREST / direct Postgres). A full CLI-generated
+# config.toml is intentionally omitted; see docs/SUPABASE_SETUP.md.
+project_id = "trc-research-tool"
