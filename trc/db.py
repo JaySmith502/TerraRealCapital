@@ -28,13 +28,15 @@ class Database:
         return self.c.table("cities").select("*").order("name").execute().data
 
     def get_cache(self, source, geo_id, period, fetched_on) -> dict | None:
+        fetched_on_str = fetched_on.isoformat() if hasattr(fetched_on, "isoformat") else fetched_on
         res = (self.c.table("api_cache").select("payload")
                .eq("source", source).eq("geo_id", geo_id)
-               .eq("period", period).eq("fetched_on", fetched_on).execute())
+               .eq("period", period).eq("fetched_on", fetched_on_str).execute())
         return res.data[0]["payload"] if res.data else None
 
     def put_cache(self, source, geo_id, period, fetched_on, payload) -> None:
+        fetched_on_str = fetched_on.isoformat() if hasattr(fetched_on, "isoformat") else fetched_on
         self.c.table("api_cache").insert({
             "source": source, "geo_id": geo_id, "period": period,
-            "fetched_on": fetched_on, "payload": payload,
+            "fetched_on": fetched_on_str, "payload": payload,
         }).execute()

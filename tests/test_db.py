@@ -1,3 +1,6 @@
+import datetime
+import json
+
 from trc.db import Database
 
 
@@ -49,3 +52,40 @@ def test_update_report_writes_patch():
     assert got["status"] == "edited"
     assert got["narrative_edited"] == "new text"
     assert got["narrative_raw"] == "original"  # unrelated field unchanged
+
+
+# --- cache serialization regression tests ---
+
+class SerializingFakeTable:
+    """FakeTable that json.dumps the inserted row to catch non-serializable values."""
+    def __init__(self): self._rows = []; self._eq_args = {}
+    def insert(self, row):
+        json.dumps(row)   # raises TypeError if row contains non-serializable values
+        self._rows.append(row)
+        return self
+    def select(self, *_): return self
+    def eq(self, k, v): self._eq_args[k] = v; return self
+    def execute(self): return type("R", (), {"data": self._rows})
+
+
+class SerializingFakeClient:
+    def __init__(self): self._table = SerializingFakeTable()
+    def table(self, _): return self._table
+
+
+def test_put_cache_row_is_json_serializable():
+    client = SerializingFakeClient()
+    db = Database(client)
+    d = datetime.date(2026, 5, 18)
+    # Should not raise TypeError; fetched_on must be stored as ISO string
+    db.put_cache("perplexity", "19820", "2026-05-18", d, {"k": "v"})
+    row = client._table._rows[0]
+    assert row["fetched_on"] == "2026-05-18"
+
+
+def test_get_cache_normalizes_date_filter():
+    client = SerializingFakeClient()
+    db = Database(client)
+    d = datetime.date(2026, 5, 18)
+    db.get_cache("perplexity", "19820", "2026-05-18", d)
+    assert client._table._eq_args["fetched_on"] == "2026-05-18"
