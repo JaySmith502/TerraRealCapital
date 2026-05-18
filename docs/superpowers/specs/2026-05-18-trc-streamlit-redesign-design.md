@@ -20,7 +20,7 @@ This redesign collapses the system to a single Python Streamlit application back
 | Report shape | Dual-output kept as originally specced; numeric metrics are "Perplexity-cited", not API-authoritative |
 | Persistence | Supabase Postgres (data only) |
 | Auth | Single shared app password via `st.secrets`; no Supabase Auth, no RLS, no per-user identity |
-| Scan execution | Synchronous, blocking, with `st.status` step updates; no `report_events`, no Realtime; row written only on full success |
+| Scan execution | Synchronous, blocking, with `st.status` step updates; no `report_events`, no Realtime; row written only on full success; failures surface a frontend error notification (`st.status` error state + `st.error()` banner) |
 | Section regenerate | Section selector (split by Markdown headings) + optional instruction box + Regenerate button; Claude rewrites one section, spliced back into the in-session buffer; persisted only on explicit Save |
 | Markdown editing | `st.text_area` + live `st.markdown` preview; no MDXEditor / 3rd-party editor |
 | Newsletter export | `st.code(markdown)` (built-in copy button) |
@@ -60,7 +60,7 @@ The Supabase service-role key lives only in Streamlit server-side secrets and ne
 3. Orchestrator, entirely in memory: read-through `api_cache` for the Perplexity call → call Perplexity → call Claude with the research as input, producing dual output → parse and validate the JSON half. Only after all of that succeeds does it write one `reports` row (`status='ready'`).
 4. On success the app navigates to the Report Editor for that report.
 
-**Failure behavior:** if any step fails (Perplexity error, Claude error, JSON validation failure, or the final DB write), no `reports` row is created — there are no partial or `failed` rows. The `st.status` block is marked error state and a compact human-readable error is shown in the UI (full exception logged server-side). The user fixes the condition (or retries) and re-runs the scan.
+**Failure behavior:** if any step fails (Perplexity error, Claude error, JSON validation failure, or the final DB write), no `reports` row is created — there are no partial or `failed` rows. The user is notified in the frontend: the `st.status` block transitions to `state="error"` (its expander turns red and the run halts) AND an `st.error()` banner is rendered naming which step failed plus a compact human-readable message. The full exception is logged server-side only (never shown raw to the user). The Scanner's city/signal controls remain populated so the user can immediately fix the condition and re-run the scan.
 
 One scan per session; the page blocks until done (~30–60s). Acceptable for 3–4 internal users running occasional scans. If the tab closes mid-scan, the scan is lost (re-run it; nothing is persisted until success).
 
