@@ -21,6 +21,9 @@ Rules:
 - Do not editorialize beyond what the facts support. No hype, no guarantees.
 - All numbers must be attributed with "as reported by [source]" or "per [source]" inline.
 - Round numbers only when the source rounds them; otherwise use the exact figure cited.
+- Populate every structured bucket; use `metrics_extra` for any decision-relevant figure \
+  (e.g. median household income, owner-occupancy rate, permit counts) that does not fit \
+  cleanly into `metrics`, `signals`, `capital_flows`, or `submarkets` — do not drop it.
 
 ---
 
