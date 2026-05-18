@@ -48,6 +48,9 @@ if st.button("Scan", type="primary"):
         st.session_state["open_report_id"] = rid
         st.success("Report ready. Open it from **Report Editor** in the sidebar.")
     except Exception as e:  # noqa: BLE001 - top-level scan boundary
+        # st.status auto-marks error when the with-block raises; reinforce with a banner.
+        # Spec §5: human-readable banner in the UI; full traceback server-side ONLY
+        # (never st.exception()). Streamlit Community Cloud captures stdout/stderr.
         import logging
         logging.exception("scan failed")
         st.error(f"Scan failed ({type(e).__name__}): {e}")
