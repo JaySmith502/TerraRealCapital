@@ -14,7 +14,7 @@ def generate_report(client, *, model: str, research_text: str,
     focus = f"\n\nEmphasise: {', '.join(signals)}." if signals else ""
     msg = client.messages.create(
         model=model,
-        max_tokens=8000,
+        max_tokens=16000,
         system=[{
             "type": "text",
             "text": SCAN_SYSTEM_PROMPT,

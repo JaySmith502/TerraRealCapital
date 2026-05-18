@@ -34,6 +34,8 @@ def test_generate_report_forces_tool_and_caches_system():
     sys = client.captured["system"]
     assert isinstance(sys, list) and sys[0]["cache_control"] == {"type": "ephemeral"}
     assert client.captured["tool_choice"] == {"type": "tool", "name": "emit_report"}
+    # headroom for long narrative + structured buckets (real-API truncation fix)
+    assert client.captured["max_tokens"] >= 16000
 
 
 def test_scan_system_prompt_is_real_and_cacheable():
