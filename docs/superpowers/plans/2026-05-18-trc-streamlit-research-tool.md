@@ -1363,7 +1363,7 @@ if st.button("Save", type="primary"):
         "narrative_edited": st.session_state[buf_key],
         "tags": [t.strip() for t in tags.split(",") if t.strip()],
         "status": "edited",
-        "edited_at": dt.datetime.utcnow().isoformat(),
+        "edited_at": dt.datetime.now(dt.timezone.utc).isoformat(),
     })
     st.success("Saved.")
 
